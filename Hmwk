@@ -1,0 +1,76 @@
+/* 
+ * File:   Assignment 3
+ * Author: Matthew Cawley
+ * Created on October 6, 2015, 12:46 PM
+ * Homework: PC 10.4-Average number of letters/Word Counter
+ */
+
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+using namespace std;
+
+//Global Constants
+
+//Function Prototypes
+int WordCount(string);
+int LetterCount(string);
+
+int main(int argc, char** argv)
+{
+    string sntc;
+    cout << " Enter a string: ";
+    // inputs sentence
+    getline(cin, sntc);
+    
+    cout << endl << "Your sentence is: " << sntc << endl;
+    cout << "There are "<< WordCount(sntc) <<
+            " words in that sentence." << endl;
+    cout << "The average number of letters per word is " <<
+            LetterCount(sntc) << endl;
+
+return 0;
+}
+
+int WordCount(string Sentence)
+{
+    // gets length of sentence and assigns it to int length
+    int length = Sentence.length(); 
+    int words = 1; 
+    
+    for (int size = 0; length > size; size++)
+    {
+        if (Sentence[size] == ' ' && Sentence[size-1] != ' ') 
+        // ADDS TO words if there is a space
+        words++;
+    }
+    if ( Sentence[0] == ' '/*space*/ )
+    words--; 
+return words;
+}
+
+int LetterCount(string sentence)
+{
+    // gets length of sentence and assigns it to int length
+    int length = sentence.length(); 
+    int avgNumber;
+    int spaces =0;
+    int words = 1; 
+
+    for (int size = 0; length > size; size++)
+    {
+        if (sentence[size] == ' ' && sentence[size-1] != ' ') 
+        {
+            words++; 
+            spaces++;// ADDS TO words if there is a space
+        }
+    }
+    if (sentence[0] == ' '/*space*/ )
+    { 
+        words--; 
+    }
+    avgNumber = float((length-spaces)/words);
+
+return avgNumber;
+}
